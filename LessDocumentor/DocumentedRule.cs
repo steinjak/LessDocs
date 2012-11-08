@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace LessDocumentor
 {
+    [DebuggerDisplay("{Name} ({Category})")]
     public class DocumentedRule
     {
         private static readonly Regex KeywordLine = new Regex(@"^@(?<keyword>\w+)(?:\s+(?<rest>.*))?", RegexOptions.Compiled);
@@ -25,7 +27,7 @@ namespace LessDocumentor
         {
             string keyword = null;
             var content = new List<string>();
-            foreach (var line in comment.Split('\n'))
+            foreach (var line in comment.Split('\n', '\r'))
             {
                 var trimmed = Trim(line);
                 var match = KeywordLine.Match(trimmed);
@@ -66,7 +68,7 @@ namespace LessDocumentor
                     Category = AsOneLine(lines);
                     break;
                 case "example":
-                    Example = RetainIndentation(lines).TrimEnd('\n');
+                    Example = RetainIndentation(lines).TrimEnd('\n', '\r');
                     break;
             }
         }
@@ -84,7 +86,7 @@ namespace LessDocumentor
 
         private static string AsOneLine(IEnumerable<string> lines)
         {
-            return string.Join(" ", lines.Select(Trim));
+            return string.Join(" ", lines.Select(Trim)).TrimEnd();
         }
 
         private static string Trim(string line)

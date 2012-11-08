@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using dotless.Core.Importers;
 using dotless.Core.Input;
+using dotless.Core.Parser.Infrastructure.Nodes;
 using dotless.Core.Parser.Tree;
 using dotless.Core.Stylizers;
 
@@ -32,17 +34,31 @@ namespace LessDocumentor
                 }
                 else if (iterator.Current is Comment)
                 {
-                    var comment = (Comment)iterator.Current;
-
-                    if (!iterator.MoveNext()) break;
+                    var result = ExtractConsecutiveComments(iterator);
                     var ruleset = iterator.Current as Ruleset;
                     if (ruleset != null)
                     {
-                        documentedRules.Add(new DocumentedRule(string.Join(", ", ruleset.Selectors.Select(s => s.ToString().Trim())), comment.Value));
+                        documentedRules.Add(new DocumentedRule(string.Join(", ", ruleset.Selectors.Select(s => s.ToString().Trim())), result));
                     }
                 }
             }
             return documentedRules;
+        }
+
+        private static string ExtractConsecutiveComments(IEnumerator<Node> iterator)
+        {
+            var comment = new StringBuilder();
+            comment.AppendLine(((Comment) iterator.Current).Value);
+
+            while (iterator.MoveNext())
+            {
+                if (!(iterator.Current is Comment))
+                {
+                    break;
+                }
+                comment.AppendLine(((Comment)iterator.Current).Value);
+            }
+            return comment.ToString().TrimEnd('\n', '\r');
         }
 
         private class RelativeToFileLocationResolver : IPathResolver

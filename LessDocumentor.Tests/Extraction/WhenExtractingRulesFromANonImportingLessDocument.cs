@@ -21,5 +21,11 @@ namespace LessDocumentor.Tests.Extraction
         {
             Assert.That(rules.Any(r => r.Name == "Defined with javadoc syntax"));
         }
+
+        [Test]
+        public void RulesWithSlashSyntaxAreRecognized()
+        {
+            Assert.That(rules.Any(r => r.Name == "Defined with slash-syntax"));
+        }
     }
 }
