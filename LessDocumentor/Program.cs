@@ -4,8 +4,11 @@
     {
         static void Main(string[] args)
         {
-            var rules = RuleExtractor.ExtractRules("Style.less");
-            RuleFormatter.FormatDocumentation(rules);
+            var extractor = new RuleExtractor();
+            var formatter = new RuleFormatter();
+
+            var rules = extractor.ExtractRules("Style.less");
+            formatter.FormatDocumentation(rules);
         }
     }
 }

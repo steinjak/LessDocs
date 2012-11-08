@@ -5,7 +5,7 @@ namespace LessDocumentor
 {
     public class RuleFormatter
     {
-        public static void FormatDocumentation(IEnumerable<DocumentedRule> documentedRules)
+        public void FormatDocumentation(IEnumerable<DocumentedRule> documentedRules)
         {
             foreach (var rule in documentedRules)
             {

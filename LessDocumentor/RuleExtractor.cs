@@ -8,7 +8,7 @@ namespace LessDocumentor
 {
     public class RuleExtractor
     {
-        public static IEnumerable<DocumentedRule> ExtractRules(string fileName)
+        public IEnumerable<DocumentedRule> ExtractRules(string fileName)
         {
             var documentedRules = new List<DocumentedRule>();
 
