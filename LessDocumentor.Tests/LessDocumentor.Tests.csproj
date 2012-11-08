@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extraction\WhenExtractingRulesFromANonImportingLessDocument.cs" />
+    <Compile Include="Parsing\WhenParsingJavadocStyleComments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
