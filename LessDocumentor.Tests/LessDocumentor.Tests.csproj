@@ -43,6 +43,7 @@
     <Compile Include="Extraction\WhenExtractingRulesFromAnImportingLessDocument.cs" />
     <Compile Include="Extraction\WhenExtractingRulesFromANonImportingLessDocument.cs" />
     <Compile Include="Parsing\WhenParsingJavadocStyleComments.cs" />
+    <Compile Include="Parsing\WhenParsingSlashSyntaxComments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

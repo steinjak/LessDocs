@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace LessDocumentor
         {
             string keyword = null;
             var content = new List<string>();
-            foreach (var line in comment.Split('\n', '\r'))
+            foreach (var line in comment.Split(new[] {"\r\n", "\n"}, StringSplitOptions.None))
             {
                 var trimmed = Trim(line);
                 var match = KeywordLine.Match(trimmed);
@@ -68,7 +69,7 @@ namespace LessDocumentor
                     Category = AsOneLine(lines);
                     break;
                 case "example":
-                    Example = RetainIndentation(lines).TrimEnd('\n', '\r');
+                    Example = RetainIndentation(lines).Trim('\n', '\r');
                     break;
             }
         }
