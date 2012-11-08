@@ -17,6 +17,11 @@ namespace LessDocumentor.Tests.Parsing
             " * </div>\n" +
             " */";
 
+        private const string ExpectedExample =
+            "<div>\n" +
+            "  <span>Content here, indented</span>\n" +
+            "</div>";
+
         [SetUp]
         public void Given()
         {
@@ -39,6 +44,12 @@ namespace LessDocumentor.Tests.Parsing
         public void TheExampleIsParsed()
         {
             Assert.That(rule.Example.Contains("Content here, indented"));
+        }
+
+        [Test]
+        public void TheExampleRetainsIndentation()
+        {
+            Assert.That(rule.Example, Is.EqualTo(ExpectedExample));
         }
     }
 }

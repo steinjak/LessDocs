@@ -7,7 +7,7 @@ namespace LessDocumentor
     public class DocumentedRule
     {
         private static readonly Regex KeywordLine = new Regex(@"^@(?<keyword>\w+)(?:\s+(?<rest>.*))?", RegexOptions.Compiled);
-        private static readonly Regex LeadingCommentMarker = new Regex(@"^\s*(\*|//)\s?", RegexOptions.Compiled);
+        private static readonly Regex LeadingCommentMarker = new Regex(@"^\s*(\*/?|//)\s?", RegexOptions.Compiled);
 
         public string Name { get; private set; }
         public string Category { get; private set; }
@@ -66,7 +66,7 @@ namespace LessDocumentor
                     Category = AsOneLine(lines);
                     break;
                 case "example":
-                    Example = RetainIndentation(lines);
+                    Example = RetainIndentation(lines).TrimEnd('\n');
                     break;
             }
         }
