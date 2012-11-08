@@ -28,11 +28,11 @@ namespace LessDocumentor
                 }
                 else if (line.StartsWith("@name"))
                 {
-                    Name = line.Substring("@name".Length);
+                    Name = line.Substring("@name".Length).Trim();
                 }
                 else if (line.StartsWith("@category"))
                 {
-                    Category = line.Substring("@category".Length);
+                    Category = line.Substring("@category".Length).Trim();
                 }
                 else if (line.StartsWith("@example"))
                 {
