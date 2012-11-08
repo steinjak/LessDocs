@@ -1,21 +1,24 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using dotless.Core.Importers;
 using dotless.Core.Input;
+using dotless.Core.Parser;
 using dotless.Core.Parser.Infrastructure.Nodes;
 using dotless.Core.Parser.Tree;
 using dotless.Core.Stylizers;
 
 namespace LessDocumentor
 {
+    // ReSharper disable ExpressionIsAlwaysNull
+    // ReSharper disable ConditionIsAlwaysTrueOrFalse
+    // ReSharper disable HeuristicUnreachableCode
     public class RuleExtractor
     {
         public IEnumerable<DocumentedRule> ExtractRules(string fileName)
         {
-            var parser = new dotless.Core.Parser.Parser(new PlainStylizer(), new Importer(new FileReader(new RelativeToFileLocationResolver(fileName))));
+            var parser = new Parser(new PlainStylizer(), new Importer(new FileReader(new RelativeToFileLocationResolver(fileName))));
             var rules = parser.Parse(File.ReadAllText(fileName), fileName);
             return ExtractRulesRecursively(rules);
         }
@@ -34,28 +37,25 @@ namespace LessDocumentor
                 }
                 else if (iterator.Current is Comment)
                 {
-                    var result = ExtractConsecutiveComments(iterator);
+                    var comment = JoinConsecutiveComments(iterator);
                     var ruleset = iterator.Current as Ruleset;
                     if (ruleset != null)
                     {
-                        documentedRules.Add(new DocumentedRule(string.Join(", ", ruleset.Selectors.Select(s => s.ToString().Trim())), result));
+                        documentedRules.Add(new DocumentedRule(string.Join(", ", ruleset.Selectors.Select(s => s.ToString().Trim())), comment));
                     }
                 }
             }
             return documentedRules;
         }
 
-        private static string ExtractConsecutiveComments(IEnumerator<Node> iterator)
+        private static string JoinConsecutiveComments(IEnumerator<Node> iterator)
         {
             var comment = new StringBuilder();
             comment.AppendLine(((Comment) iterator.Current).Value);
 
             while (iterator.MoveNext())
             {
-                if (!(iterator.Current is Comment))
-                {
-                    break;
-                }
+                if (!(iterator.Current is Comment)) { break; }
                 comment.AppendLine(((Comment)iterator.Current).Value);
             }
             return comment.ToString().TrimEnd('\n', '\r');
@@ -76,4 +76,7 @@ namespace LessDocumentor
             }
         }
     }
+    // ReSharper restore ExpressionIsAlwaysNull
+    // ReSharper restore ConditionIsAlwaysTrueOrFalse
+    // ReSharper restore HeuristicUnreachableCode
 }
