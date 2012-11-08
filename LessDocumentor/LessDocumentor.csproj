@@ -46,8 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocumentedRule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RuleExtractor.cs" />
+    <Compile Include="RuleFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
