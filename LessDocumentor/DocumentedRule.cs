@@ -30,7 +30,7 @@ namespace LessDocumentor
             var content = new List<string>();
             foreach (var line in comment.Split(new[] {"\r\n", "\n"}, StringSplitOptions.None))
             {
-                var trimmed = Trim(line);
+                var trimmed = TrimMarkersAndWhitespace(line);
                 var match = KeywordLine.Match(trimmed);
                 if (match.Success)
                 {
@@ -87,12 +87,12 @@ namespace LessDocumentor
 
         private static string AsOneLine(IEnumerable<string> lines)
         {
-            return string.Join(" ", lines.Select(Trim)).TrimEnd();
+            return string.Join(" ", lines.Select(TrimMarkersAndWhitespace)).TrimEnd();
         }
 
-        private static string Trim(string line)
+        private static string TrimMarkersAndWhitespace(string line)
         {
-            return line.Trim(' ', '\t', '*', '/');
+            return line.TrimStart(' ', '\t', '*', '/');
         }
     }
 }
