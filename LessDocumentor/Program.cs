@@ -11,11 +11,16 @@ namespace LessDocumentor
     {
         static void Main(string[] args)
         {
+            var rules = ExtractRules("Style.less");
+            FormatDocumentation(rules);
+        }
+
+        private static IEnumerable<DocumentedRule> ExtractRules(string fileName)
+        {
             var documentedRules = new List<DocumentedRule>();
 
             var parser = new dotless.Core.Parser.Parser();
-            var engine = new dotless.Core.LessEngine(parser);
-            var rules = parser.Parse(File.ReadAllText("Style.less"), "Style.less");
+            var rules = parser.Parse(File.ReadAllText(fileName), fileName);
             var iterator = rules.Rules.GetEnumerator();
             while (iterator.MoveNext())
             {
@@ -32,7 +37,11 @@ namespace LessDocumentor
                     documentedRules.Add(new DocumentedRule(string.Join(", ", ruleset.Selectors.Select(s => s.ToString().Trim())), comment.Value));
                 }
             }
+            return documentedRules;
+        }
 
+        private static void FormatDocumentation(IEnumerable<DocumentedRule> documentedRules)
+        {
             foreach (var rule in documentedRules)
             {
                 Console.WriteLine("Rule: {0} ({1})\nExample:\n{2}\n\n", rule.Name, rule.Category, rule.Example);
