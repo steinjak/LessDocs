@@ -40,6 +40,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extraction\WhenExtractingRulesFromAnImportingLessDocument.cs" />
     <Compile Include="Extraction\WhenExtractingRulesFromANonImportingLessDocument.cs" />
     <Compile Include="Parsing\WhenParsingJavadocStyleComments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
