@@ -35,14 +35,10 @@ namespace LessDocumentor
                     var comment = (Comment)iterator.Current;
 
                     if (!iterator.MoveNext()) break;
-                    if (iterator.Current is Ruleset)
+                    var ruleset = iterator.Current as Ruleset;
+                    if (ruleset != null)
                     {
-                        var ruleset = (Ruleset) iterator.Current;
                         documentedRules.Add(new DocumentedRule(string.Join(", ", ruleset.Selectors.Select(s => s.ToString().Trim())), comment.Value));
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ignoring: " + iterator.Current);
                     }
                 }
             }
