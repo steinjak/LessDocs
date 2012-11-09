@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LessDocs
 {
@@ -9,7 +10,7 @@ namespace LessDocs
         {
             foreach (var rule in documentedRules)
             {
-                Console.WriteLine("Rule: {0} ({1})\nExample:\n{2}\n\n", rule.Name, rule.Category, rule.Example);
+                Console.WriteLine("Rule: {0} ({1})\nExample:\n{2}\n\n", rule.Name, rule.Category, rule.Examples.FirstOrDefault());
             }
         }
     }

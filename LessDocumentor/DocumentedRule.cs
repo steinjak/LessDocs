@@ -14,13 +14,16 @@ namespace LessDocs
 
         public string Name { get; private set; }
         public string Category { get; private set; }
-        public string Example { get; private set; }
+
+        private readonly IList<string> examples;
+        public IEnumerable<string> Examples { get { return examples; } }
 
         public string Selectors { get; private set; }
 
         public DocumentedRule(string selectors, string comment)
         {
             Selectors = selectors;
+            examples = new List<string>();
             InitFieldsFrom(comment);
         }
 
@@ -69,12 +72,13 @@ namespace LessDocs
                     Category = AsOneLine(lines);
                     break;
                 case "example":
-                    Example = RetainIndentation(lines).Trim('\n', '\r');
+                    var text = WithLineBreaksAndIndentation(lines).Trim('\n', '\r');
+                    examples.Add(text);
                     break;
             }
         }
 
-        private string RetainIndentation(IEnumerable<string> lines)
+        private string WithLineBreaksAndIndentation(IEnumerable<string> lines)
         {
             return string.Join("\n", lines.Select(TrimToCommentMarkerIfAny));
         }

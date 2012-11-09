@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 
 namespace LessDocs.Tests.Parsing
 {
@@ -43,13 +44,15 @@ namespace LessDocs.Tests.Parsing
         [Test]
         public void TheExampleIsParsed()
         {
-            Assert.That(rule.Example.Contains("Content here, indented"));
+            var example = rule.Examples.FirstOrDefault();
+            Assert.That(example, Is.Not.Null);
+            Assert.That(example.Contains("Content here, indented"));
         }
 
         [Test]
         public void TheExampleRetainsIndentation()
         {
-            Assert.That(rule.Example, Is.EqualTo(ExpectedExample));
+            Assert.That(rule.Examples.FirstOrDefault(), Is.EqualTo(ExpectedExample));
         }
     }
 }
