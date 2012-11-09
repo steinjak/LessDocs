@@ -1,13 +1,13 @@
 ﻿<html>
     <head>
-        <style>@Model.Css</style>
+        <style type="text/css">@Model.Css</style>
     </head>
     <body>
         <table>
             @foreach (var rule in Model.Rules)
             {
                 <tr>
-                    <td rowspan="2">Rule: @rule.Name @(rule.Category != null ? string.Format("({0})", rule.Category) : string.Empty)</td>
+                    <td colspan="2">Rule: @rule.Name @(rule.Category != null ? string.Format("({0})", rule.Category) : string.Empty)</td>
                 </tr>
                 if (!string.IsNullOrWhiteSpace(rule.Description))
                 {
