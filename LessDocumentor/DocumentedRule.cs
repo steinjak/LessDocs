@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace LessDocumentor
+namespace LessDocs
 {
     [DebuggerDisplay("{Name} ({Category})")]
     public class DocumentedRule

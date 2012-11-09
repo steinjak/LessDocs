@@ -2,7 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 
-namespace LessDocumentor.Tests.Extraction
+namespace LessDocs.Tests.Extraction
 {
     [TestFixture]
     public class WhenExtractingRulesFromAnImportingLessDocument

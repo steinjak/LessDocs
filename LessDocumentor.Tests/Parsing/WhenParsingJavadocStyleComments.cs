@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace LessDocumentor.Tests.Parsing
+namespace LessDocs.Tests.Parsing
 {
     [TestFixture]
     public class WhenParsingJavadocStyleComments

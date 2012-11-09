@@ -1,4 +1,4 @@
-﻿namespace LessDocumentor
+﻿namespace LessDocs
 {
     class Program
     {

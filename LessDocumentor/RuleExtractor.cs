@@ -9,7 +9,7 @@ using dotless.Core.Parser.Infrastructure.Nodes;
 using dotless.Core.Parser.Tree;
 using dotless.Core.Stylizers;
 
-namespace LessDocumentor
+namespace LessDocs
 {
     // ReSharper disable ExpressionIsAlwaysNull
     // ReSharper disable ConditionIsAlwaysTrueOrFalse
