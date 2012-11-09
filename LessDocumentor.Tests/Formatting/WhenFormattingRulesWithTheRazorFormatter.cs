@@ -13,8 +13,8 @@ namespace LessDocs.Tests.Formatting
         [SetUp]
         public void Given()
         {
-            var extractor = new RuleExtractor();
-            rules = extractor.ExtractRules("LessFiles\\ValidNonImporting.less");
+            var extractor = new RuleExtractor("LessFiles\\ValidNonImporting.less");
+            rules = extractor.ExtractRules();
             var formatter = new RazorFormatter("Formatting\\TestTemplate.cshtml");
             result = formatter.FormatDocumentation(rules);
         }

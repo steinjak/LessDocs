@@ -12,8 +12,8 @@ namespace LessDocs.Tests.Extraction
         [SetUp]
         public void Given()
         {
-            var extractor = new RuleExtractor();
-            rules = extractor.ExtractRules("LessFiles\\ValidImporting.less");
+            var extractor = new RuleExtractor("LessFiles\\ValidImporting.less");
+            rules = extractor.ExtractRules();
         }
 
         [Test]

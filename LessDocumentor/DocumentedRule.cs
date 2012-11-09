@@ -72,6 +72,9 @@ namespace LessDocs
                 case "category":
                     Category = AsOneLine(lines);
                     break;
+                case "description":
+                    Description = AsOneLine(lines);
+                    break;
                 case "example":
                     var text = WithLineBreaksAndIndentation(lines).Trim('\n', '\r');
                     examples.Add(text);

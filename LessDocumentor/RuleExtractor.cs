@@ -5,6 +5,7 @@ using System.Text;
 using dotless.Core.Importers;
 using dotless.Core.Input;
 using dotless.Core.Parser;
+using dotless.Core.Parser.Infrastructure;
 using dotless.Core.Parser.Infrastructure.Nodes;
 using dotless.Core.Parser.Tree;
 using dotless.Core.Stylizers;
@@ -16,11 +17,22 @@ namespace LessDocs
     // ReSharper disable HeuristicUnreachableCode
     public class RuleExtractor
     {
-        public IEnumerable<DocumentedRule> ExtractRules(string fileName)
+        private readonly Ruleset rules;
+
+        public RuleExtractor(string fileName)
         {
             var parser = new Parser(new PlainStylizer(), new Importer(new FileReader(new RelativeToFileLocationResolver(fileName))));
-            var rules = parser.Parse(File.ReadAllText(fileName), fileName);
+            rules = parser.Parse(File.ReadAllText(fileName), fileName);
+        }
+
+        public IEnumerable<DocumentedRule> ExtractRules()
+        {
             return ExtractRulesRecursively(rules);
+        }
+
+        public string RenderCss()
+        {
+            return rules.ToCSS(new Env());
         }
 
         private static IEnumerable<DocumentedRule> ExtractRulesRecursively(Ruleset rules)

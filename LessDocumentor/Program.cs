@@ -6,10 +6,10 @@ namespace LessDocs
     {
         static void Main(string[] args)
         {
-            var extractor = new RuleExtractor();
+            var extractor = new RuleExtractor("Style.less");
             var formatter = new RazorFormatter("DefaultTemplate.cshtml");
 
-            var rules = extractor.ExtractRules("Style.less");
+            var rules = extractor.ExtractRules();
             Console.WriteLine(formatter.FormatDocumentation(rules));
         }
     }
