@@ -12,6 +12,7 @@ namespace LessDocs.Tests.Parsing
             "/**\n" +
             " * @name Test rule     \n" +
             " * @category Tests\n" +
+            " * @description Test description\n" +
             " * @example\n" +
             " * <div>\n" +
             " *   <span>Content here, indented</span>\n" +
@@ -39,6 +40,12 @@ namespace LessDocs.Tests.Parsing
         public void TheCategoryIsParsed()
         {
             Assert.That(rule.Category, Is.EqualTo("Tests"));
+        }
+
+        [Test]
+        public void TheDescriptionIsParsed()
+        {
+            Assert.That(rule.Description, Is.EqualTo("Test description"));
         }
 
         [Test]

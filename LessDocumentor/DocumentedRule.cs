@@ -14,6 +14,7 @@ namespace LessDocs
 
         public string Name { get; private set; }
         public string Category { get; private set; }
+        public string Description { get; private set; }
 
         private readonly IList<string> examples;
         public IEnumerable<string> Examples { get { return examples; } }
