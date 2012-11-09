@@ -1,0 +1,29 @@
+﻿@model System.Collections.Generic.IEnumerable<LessDocs.DocumentedRule>
+
+<html>
+    <body>
+        <table>
+            @foreach (var rule in Model)
+            {
+                <tr>
+                    <td rowspan="2">Rule: @rule.Name @(rule.Category != null ? string.Format("({0})", rule.Category) : string.Empty)</td>
+                </tr>
+                if (!string.IsNullOrWhiteSpace(rule.Description))
+                {
+                    <td>
+                       <td colspan="2">@rule.Description</td>
+                   </td>
+                }
+                foreach (var example in rule.Examples)
+                {
+                    <tr>
+                        <td>
+                            <pre>@example</pre>
+                        </td>
+                        <td>@example</td>
+                    </tr>
+                }
+            }
+        </table>
+    </body>
+</html>

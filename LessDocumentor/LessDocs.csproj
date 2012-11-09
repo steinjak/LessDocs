@@ -61,6 +61,9 @@
     <Compile Include="RuleFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DefaultTemplate.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Style.less">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
