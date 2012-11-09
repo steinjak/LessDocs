@@ -1,0 +1,6 @@
+﻿@model System.Collections.Generic.IEnumerable<LessDocs.DocumentedRule>
+Rules:
+@foreach (var rule in Model)
+{
+<text>@rule.Name</text>
+}

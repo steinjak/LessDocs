@@ -42,12 +42,16 @@
   <ItemGroup>
     <Compile Include="Extraction\WhenExtractingRulesFromAnImportingLessDocument.cs" />
     <Compile Include="Extraction\WhenExtractingRulesFromANonImportingLessDocument.cs" />
+    <Compile Include="Formatting\WhenFormattingRulesWithTheRazorFormatter.cs" />
     <Compile Include="Parsing\WhenParsingAnEntryWithMultipleExamples.cs" />
     <Compile Include="Parsing\WhenParsingJavadocStyleComments.cs" />
     <Compile Include="Parsing\WhenParsingSlashSyntaxComments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Formatting\TestTemplate.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="LessFiles\InvalidSyntax.less">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
