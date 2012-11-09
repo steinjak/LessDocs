@@ -10,7 +10,7 @@ namespace LessDocs
             var formatter = new RazorFormatter("DefaultTemplate.cshtml");
 
             var rules = extractor.ExtractRules();
-            Console.WriteLine(formatter.FormatDocumentation(rules));
+            Console.WriteLine(formatter.FormatDocumentation(rules, extractor.RenderCss()));
         }
     }
 }

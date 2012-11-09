@@ -1,18 +1,19 @@
-﻿@model System.Collections.Generic.IEnumerable<LessDocs.DocumentedRule>
-
-<html>
+﻿<html>
+    <head>
+        <style>@Model.Css</style>
+    </head>
     <body>
         <table>
-            @foreach (var rule in Model)
+            @foreach (var rule in Model.Rules)
             {
                 <tr>
                     <td rowspan="2">Rule: @rule.Name @(rule.Category != null ? string.Format("({0})", rule.Category) : string.Empty)</td>
                 </tr>
                 if (!string.IsNullOrWhiteSpace(rule.Description))
                 {
-                    <td>
-                       <td colspan="2">@rule.Description</td>
-                   </td>
+                   <tr>
+                      <td colspan="2">@rule.Description</td>
+                   </tr>
                 }
                 foreach (var example in rule.Examples)
                 {
