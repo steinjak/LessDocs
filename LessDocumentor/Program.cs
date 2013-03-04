@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace LessDocs
 {
@@ -10,7 +11,10 @@ namespace LessDocs
             var formatter = new RazorFormatter("DefaultTemplate.cshtml");
 
             var rules = extractor.ExtractRules();
-            Console.WriteLine(formatter.FormatDocumentation(rules, extractor.RenderCss()));
+            var formatted = formatter.FormatDocumentation(rules, extractor.RenderCss());
+            File.WriteAllText("output.html", formatted);
+
+            Console.WriteLine("Wrote the documentation to output.html");
         }
     }
 }
